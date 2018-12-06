@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from './Navbar'
 import styled from 'styled-components'
 
 const Boxed = styled.section`
@@ -8,10 +7,6 @@ const Boxed = styled.section`
   padding-top: ${75 + 30}px;
 `
 
-const Home = () => (
-  <React.Fragment>
-    <Boxed>This is the home page</Boxed>
-  </React.Fragment>
-)
+const Home = () => <Boxed>This is the home page</Boxed>
 
 export default Home

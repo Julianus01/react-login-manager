@@ -14,12 +14,16 @@ class LoginForm extends React.Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values)
+
+        const { auth } = this.props
+        auth.saySomething()
       }
     })
   }
 
   render() {
     const { getFieldDecorator } = this.props.form
+
     return (
       <Form onSubmit={this.handleSubmit}>
         <FormItem>
@@ -60,10 +64,7 @@ class LoginForm extends React.Component {
           <a style={{ float: 'right' }} href=''>
             Forgot password
           </a>
-          <Button style={{ width: '100%' }} type='primary'
-          // htmlType='submit'
-          href='/home'
-          >
+          <Button style={{ width: '100%' }} type='primary' htmlType='submit'>
             Log in
           </Button>
           Or <a href=''>register now!</a>
