@@ -1,15 +1,20 @@
 import { Container } from 'unstated'
+import firebase from 'firebase'
 
 export default class AuthContainer extends Container {
   state = {
-    user: 'this shit works',
+    user: () => firebase.auth().currentUser,
   }
 
-  setNewUser = name => {
-    this.setState({ user: name })
-  }
+  loginWithEmailAndPassword = async credentials => {
+    try {
+      const response = await firebase
+        .auth()
+        .signInWithEmailAndPassword(credentials.email, credentials.password)
 
-  saySomething = () => {
-    console.log('I said something')
+      // await this.setState({ user: response.user })
+    } catch (error) {
+      console.log(error)
+    }
   }
 }

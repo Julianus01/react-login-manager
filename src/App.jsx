@@ -3,10 +3,9 @@ import { routes } from './routes'
 import { BrowserRouter as Router, Switch } from 'react-router-dom'
 import NavRoute from './routes/NavRoute'
 import { Provider } from 'unstated'
-import AuthContainer from './containers/AuthContainer'
 
 const App = () => (
-  <Provider inject={[AuthContainer]}>
+  <Provider>
     <Router>
       <Switch>
         {routes.map(route => (

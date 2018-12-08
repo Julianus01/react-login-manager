@@ -2,8 +2,6 @@ import React from 'react'
 import { Row, Card } from 'antd'
 import styled from 'styled-components'
 import LoginForm from './LoginForm'
-import { Subscribe } from 'unstated'
-import AuthContainer from '../containers/AuthContainer'
 
 const Wrapper = styled(Row)`
   height: 100vh;
@@ -11,20 +9,18 @@ const Wrapper = styled(Row)`
 `
 
 const LoginCard = styled(Card)`
-  max-width: 350px;
+  max-width: 300px;
+  width: 100%;
   height: fit-content;
+  margin: 16px;
 `
 
 const LoginPage = () => (
-  <Subscribe to={[AuthContainer]}>
-    {auth => (
-      <Wrapper type='flex' justify='center'>
-        <LoginCard title='Login'>
-          <LoginForm auth={auth} />
-        </LoginCard>
-      </Wrapper>
-    )}
-  </Subscribe>
+  <Wrapper type='flex' justify='center'>
+    <LoginCard title='Login'>
+      <LoginForm />
+    </LoginCard>
+  </Wrapper>
 )
 
 export default LoginPage
