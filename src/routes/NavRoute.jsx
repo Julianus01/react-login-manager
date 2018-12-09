@@ -1,18 +1,12 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Route } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 
-const NavRoute = ({ hideNav, ...rest }) => (
+const NavRoute = props => (
   <React.Fragment>
-    {hideNav ? null : <Navbar />}
-    <Route {...rest} />
+    <Navbar />
+    <Route {...props} />
   </React.Fragment>
 )
-
-NavRoute.propTypes = {
-  hideNav: PropTypes.bool,
-  component: PropTypes.func.isRequired,
-}
 
 export default NavRoute

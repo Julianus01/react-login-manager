@@ -6,15 +6,16 @@ import HomePage from '../components/HomePage'
 
 // Custom routes
 import AuthRoute from './AuthRoute'
-import NavRoute from './NavRoute'
+import HomeIfAuthed from './HomeIfAuthed'
 
 import { Switch } from 'react-router-dom'
 
 const Routes = () => (
   <Switch>
+    <HomeIfAuthed path='/' exact={true} component={LandingPage} />
+    <HomeIfAuthed path='/login' exact={true} component={LoginPage} />
+
     <AuthRoute path='/home' exact={true} component={HomePage} />
-    <NavRoute path='/' exact={true} hideNav={true} component={LandingPage} />
-    <NavRoute path='/login' exact={true} hideNav={true} component={LoginPage} />
   </Switch>
 )
 

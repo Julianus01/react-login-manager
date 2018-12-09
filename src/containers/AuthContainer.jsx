@@ -27,7 +27,16 @@ export default class AuthContainer extends Container {
   loginWithGoogle = async () => {
     try {
       const googleProvider = new firebase.auth.GoogleAuthProvider()
-      const response = await firebase.auth().signInWithPopup(googleProvider)
+      await firebase.auth().signInWithPopup(googleProvider)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  logout = async () => {
+    try {
+      await firebase.auth().signOut()
+      console.log('here')
     } catch (error) {
       console.log(error)
     }
