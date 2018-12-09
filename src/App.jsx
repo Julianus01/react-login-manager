@@ -1,17 +1,12 @@
 import React from 'react'
-import { routes } from './routes'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
-import NavRoute from './routes/NavRoute'
+import Routes from './routes'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { Provider } from 'unstated'
 
 const App = () => (
   <Provider>
     <Router>
-      <Switch>
-        {routes.map(route => (
-          <NavRoute key={route.path} {...route} />
-        ))}
-      </Switch>
+     <Routes />
     </Router>
   </Provider>
 )

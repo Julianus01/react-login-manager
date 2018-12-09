@@ -3,6 +3,7 @@ import { Form, Icon, Input, Button, Row } from 'antd'
 import styled from 'styled-components'
 import { withAuth } from '../hoc/unstated'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router-dom'
 
 const FormItem = Form.Item
 
@@ -16,9 +17,7 @@ const LoginButton = styled(Button)`
 `
 
 const ConnectButton = styled(Button)`
-  border-radius: 1.5rem;
-  flex: 1;
-  margin: 0 8px;
+  width: 100%;
 `
 
 class LoginForm extends React.Component {
@@ -68,16 +67,25 @@ class LoginForm extends React.Component {
             <LoginButton size='large' type='primary' htmlType='submit'>
               Log in
             </LoginButton>
-            <a style={{ float: 'right', marginRight: 8 }} href=''>
+            {/* <a style={{ float: 'right', marginRight: 8 }} href=''>
               Forgot password
-            </a>
+            </a> */}
             {/* Or <a href=''>register now!</a> */}
           </FormItem>
         </Form>
 
-        <Row justify='space-around' type='flex'>
-          <ConnectButton icon='google' size='large' type='primary' />
-          <ConnectButton icon='facebook' size='large' type='primary' />
+        <Row>
+          <ConnectButton
+            icon='google'
+            size='large'
+            type='primary'
+            onClick={this.loginWithGoogle}
+          >
+            gmail
+          </ConnectButton>
+          <ConnectButton icon='facebook' size='large' type='primary'>
+            facebook
+          </ConnectButton>
         </Row>
       </React.Fragment>
     )
@@ -95,8 +103,14 @@ class LoginForm extends React.Component {
   loginWithEmailAndPassword = async formData => {
     const { auth } = this.props
     await auth.loginWithEmailAndPassword(formData)
-    console.log(this.props)
-    console.log(auth.state.user())
+    this.props.history.push('/home')
+  }
+
+  loginWithGoogle = async () => {
+    const { auth } = this.props
+    await auth.loginWithGoogle()
+
+    this.props.history.push('/home')
   }
 }
 
@@ -109,4 +123,4 @@ LoginForm.propTypes = {
   }),
 }
 
-export default withAuth((LoginForm = Form.create()(LoginForm)))
+export default withRouter(withAuth((LoginForm = Form.create()(LoginForm))))
