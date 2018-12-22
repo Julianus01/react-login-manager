@@ -5,12 +5,18 @@ export default class AuthContainer extends Container {
   constructor() {
     super()
 
-    firebase.auth().onAuthStateChanged(user => {
-      user && this.setState({ user })
+    firebase.auth().onAuthStateChanged(async user => {
+      if (user) {
+        localStorage.setItem('user', JSON.stringify(user))
+        this.setState({ user: { ...user } })
+      } else {
+        localStorage.removeItem('user')
+        this.setState({ user: null })
+      }
     })
 
     this.state = {
-      user: null,
+      user: JSON.parse(localStorage.getItem('user')),
     }
   }
 
@@ -33,10 +39,18 @@ export default class AuthContainer extends Container {
     }
   }
 
+  loginWithFacebook = async () => {
+    try {
+      const facebookProvider = new firebase.auth.FacebookAuthProvider()
+      await firebase.auth().signInWithPopup(facebookProvider)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   logout = async () => {
     try {
       await firebase.auth().signOut()
-      console.log('here')
     } catch (error) {
       console.log(error)
     }

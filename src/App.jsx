@@ -6,7 +6,7 @@ import { Provider } from 'unstated'
 const App = () => (
   <Provider>
     <Router>
-     <Routes />
+      <Routes />
     </Router>
   </Provider>
 )

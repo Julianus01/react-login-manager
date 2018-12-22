@@ -13,7 +13,6 @@ const InputIcon = styled(Icon)`
 
 const LoginButton = styled(Button)`
   width: 100%;
-  /* border-radius: 1.5rem; */
 `
 
 const ConnectButton = styled(Button)`
@@ -21,6 +20,10 @@ const ConnectButton = styled(Button)`
 `
 
 class LoginForm extends React.Component {
+  state = {
+    emailLoading: false,
+  }
+
   render() {
     const { getFieldDecorator } = this.props.form
 
@@ -64,8 +67,13 @@ class LoginForm extends React.Component {
               valuePropName: 'checked',
               initialValue: true,
             })(<Checkbox>Remember me</Checkbox>)} */}
-            <LoginButton size='large' type='primary' htmlType='submit'>
-              Log in
+            <LoginButton
+              size='large'
+              type='primary'
+              htmlType='submit'
+              loading={this.state.emailLoading}
+            >
+              {!this.state.emailLoading && 'Login'}
             </LoginButton>
             {/* <a style={{ float: 'right', marginRight: 8 }} href=''>
               Forgot password
@@ -80,10 +88,16 @@ class LoginForm extends React.Component {
             size='large'
             type='primary'
             onClick={this.loginWithGoogle}
+            style={{ marginBottom: 24 }}
           >
             gmail
           </ConnectButton>
-          <ConnectButton icon='facebook' size='large' type='primary'>
+          <ConnectButton
+            icon='facebook'
+            size='large'
+            type='primary'
+            onClick={this.loginWithFacebook}
+          >
             facebook
           </ConnectButton>
         </Row>
@@ -101,21 +115,29 @@ class LoginForm extends React.Component {
   }
 
   loginWithEmailAndPassword = async formData => {
-    const { auth } = this.props
-    await auth.loginWithEmailAndPassword(formData)
-    this.props.history.push('/home')
+    try {
+      const { authContainer } = this.props
+
+      this.setState({ emailLoading: true })
+      await authContainer.loginWithEmailAndPassword(formData)
+    } catch (error) {
+      this.setState({ emailLoading: false })
+    }
   }
 
   loginWithGoogle = async () => {
-    const { auth } = this.props
-    await auth.loginWithGoogle()
+    const { authContainer } = this.props
+    await authContainer.loginWithGoogle()
+  }
 
-    this.props.history.push('/home')
+  loginWithFacebook = async () => {
+    const { authContainer } = this.props
+    await authContainer.loginWithFacebook()
   }
 }
 
 LoginForm.propTypes = {
-  auth: PropTypes.shape({
+  authContainer: PropTypes.shape({
     loginWithEmailAndPassword: PropTypes.func.isRequired,
     state: PropTypes.shape({
       user: PropTypes.object,

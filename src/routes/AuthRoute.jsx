@@ -3,10 +3,8 @@ import NavRoute from './NavRoute'
 import { withAuth } from '../hoc/unstated'
 import { Redirect } from 'react-router-dom'
 
-const AuthRoute = props => {
-  if (!props.auth.state.user) return <Redirect to='/login' />
+export default withAuth(({ authContainer, ...rest }) => {
+  if (!authContainer.state.user) return <Redirect to='/' />
 
-  return <NavRoute {...props} />
-}
-
-export default withAuth(AuthRoute)
+  return <NavRoute {...rest} />
+})
