@@ -23,7 +23,7 @@ export default class PostContainer extends Container {
     querySnapshot.forEach(snap => {
       posts.push({ id: snap.id, ...snap.data() })
     })
-    this.setState({ posts })
+    await this.setState({ posts })
   }
 
   addPost = async (uid, payload) => {
@@ -39,5 +39,22 @@ export default class PostContainer extends Container {
     await this.setState(prevState => ({
       posts: [newPost, ...prevState.posts],
     }))
+  }
+
+  deletePost = async (uid, postId) => {
+    try {
+      await this.db
+        .collection('users')
+        .doc(uid)
+        .collection('posts')
+        .doc(postId)
+        .delete()
+
+      const posts = this.state.posts.filter(post => post.id !== postId)
+      await this.setState({ posts })
+    } catch (error) {
+      console.log('Error when deleting')
+      console.log(error)
+    }
   }
 }

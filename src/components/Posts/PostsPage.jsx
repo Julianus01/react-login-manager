@@ -1,5 +1,5 @@
 import React from 'react'
-import { withAuth, withPost } from '../../hoc/unstated'
+import { withAuthContainer, withPostContainer } from '../../hoc/unstated'
 import { compose } from 'recompose'
 import PostsList from './PostsList'
 
@@ -14,7 +14,7 @@ class PostsPage extends React.Component {
   render() {
     const { postContainer } = this.props
     const { user } = this.props.authContainer.state
-    console.log('page render')
+    console.log('PAGE render')
 
     if (!postContainer.state.posts.length) return <div>Loading...</div>
 
@@ -33,12 +33,13 @@ class PostsPage extends React.Component {
         >
           Add to list
         </button>
+        <button onClick={() => postContainer.getPosts(user.uid)}>Refresh</button>
       </React.Fragment>
     )
   }
 }
 
 export default compose(
-  withAuth,
-  withPost
+  withAuthContainer,
+  withPostContainer
 )(PostsPage)

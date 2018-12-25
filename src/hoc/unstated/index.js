@@ -3,13 +3,13 @@ import { Subscribe } from 'unstated'
 import AuthContainer from '../../containers/AuthContainer'
 import PostContainer from '../../containers/PostContainer'
 
-export const withAuth = Component => props => (
+export const withAuthContainer = Component => props => (
   <Subscribe to={[AuthContainer]}>
     {authContainer => <Component authContainer={authContainer} {...props} />}
   </Subscribe>
 )
 
-export const withPost = Component => props => (
+export const withPostContainer = Component => props => (
   <Subscribe to={[PostContainer]}>
     {postContainer => <Component postContainer={postContainer} {...props} />}
   </Subscribe>

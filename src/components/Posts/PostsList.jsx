@@ -1,10 +1,9 @@
 import React from 'react'
-import { withAuth, withPost } from '../../hoc/unstated'
+import { withAuthContainer } from '../../hoc/unstated'
 import Post from './Post'
-import { compose } from 'recompose'
 
 const PostsList = React.memo(({ posts }) => {
-  console.log('list render')
+  console.log('LIST render')
 
   return (
     <React.Fragment>
@@ -15,7 +14,4 @@ const PostsList = React.memo(({ posts }) => {
   )
 })
 
-export default compose(
-  withAuth,
-  withPost
-)(PostsList)
+export default withAuthContainer(PostsList)

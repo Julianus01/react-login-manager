@@ -1,9 +1,9 @@
 import React from 'react'
-import { withAuth } from '../hoc/unstated'
+import { withAuthContainer } from '../hoc/unstated'
 import { Redirect } from 'react-router-dom'
 import NoNavRoute from './NoNavRoute'
 
-export default withAuth(({ authContainer, ...rest }) => {
+export default withAuthContainer(({ authContainer, ...rest }) => {
   if (authContainer.state.user)
     return <Redirect to='/posts' />
     

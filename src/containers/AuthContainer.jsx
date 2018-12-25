@@ -5,7 +5,7 @@ export default class AuthContainer extends Container {
   constructor() {
     super()
 
-    firebase.auth().onAuthStateChanged(async user => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         localStorage.setItem('user', JSON.stringify(user))
         this.setState({ user: { ...user } })

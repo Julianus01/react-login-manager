@@ -1,23 +1,30 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Row } from 'antd'
 import styled from 'styled-components'
-import { withAuth } from '../hoc/unstated'
+import { withAuthContainer } from '../hoc/unstated'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
+import { compose } from 'recompose'
 
-const FormItem = Form.Item
+const emailRules = {
+  rules: [
+    {
+      type: 'email',
+      message: 'The input is not valid E-mail!',
+    },
+    {
+      required: true,
+      message: 'Please input your E-mail!',
+    },
+  ],
+}
 
-const InputIcon = styled(Icon)`
-  color: rgba(0, 0, 0, 0.25);
-`
-
-const LoginButton = styled(Button)`
-  width: 100%;
-`
-
-const ConnectButton = styled(Button)`
-  width: 100%;
-`
+const passwordRules = {
+  rules: [
+    { required: true, message: 'Please input your Password!' },
+    { min: 6, message: 'Password must be at least 6 characters' },
+  ],
+}
 
 class LoginForm extends React.Component {
   state = {
@@ -31,29 +38,13 @@ class LoginForm extends React.Component {
       <React.Fragment>
         <Form onSubmit={this.validateForm}>
           <FormItem>
-            {getFieldDecorator('email', {
-              rules: [
-                {
-                  type: 'email',
-                  message: 'The input is not valid E-mail!',
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
-              ],
-            })(
+            {getFieldDecorator('email', emailRules)(
               <Input placeholder='Email' prefix={<InputIcon type='mail' />} />
             )}
           </FormItem>
 
           <FormItem>
-            {getFieldDecorator('password', {
-              rules: [
-                { required: true, message: 'Please input your Password!' },
-                { min: 6, message: 'Password must be at least 6 characters' },
-              ],
-            })(
+            {getFieldDecorator('password', passwordRules)(
               <Input
                 prefix={<InputIcon type='lock' />}
                 type='password'
@@ -63,10 +54,6 @@ class LoginForm extends React.Component {
           </FormItem>
 
           <FormItem>
-            {/* {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(<Checkbox>Remember me</Checkbox>)} */}
             <LoginButton
               size='large'
               type='primary'
@@ -75,10 +62,6 @@ class LoginForm extends React.Component {
             >
               {!this.state.emailLoading && 'Login'}
             </LoginButton>
-            {/* <a style={{ float: 'right', marginRight: 8 }} href=''>
-              Forgot password
-            </a> */}
-            {/* Or <a href=''>register now!</a> */}
           </FormItem>
         </Form>
 
@@ -136,6 +119,20 @@ class LoginForm extends React.Component {
   }
 }
 
+const FormItem = Form.Item
+
+const InputIcon = styled(Icon)`
+  color: rgba(0, 0, 0, 0.25);
+`
+
+const LoginButton = styled(Button)`
+  width: 100%;
+`
+
+const ConnectButton = styled(Button)`
+  width: 100%;
+`
+
 LoginForm.propTypes = {
   authContainer: PropTypes.shape({
     loginWithEmailAndPassword: PropTypes.func.isRequired,
@@ -145,4 +142,7 @@ LoginForm.propTypes = {
   }),
 }
 
-export default withRouter(withAuth((LoginForm = Form.create()(LoginForm))))
+export default compose(
+  withRouter,
+  withAuthContainer
+)((LoginForm = Form.create()(LoginForm)))
