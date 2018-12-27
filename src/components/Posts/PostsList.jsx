@@ -8,7 +8,7 @@ const PostsList = React.memo(({ posts }) => {
   return (
     <React.Fragment>
       {posts.map(post => (
-        <Post key={post.id} post={post} />
+        <Post key={post._id} post={post} />
       ))}
     </React.Fragment>
   )

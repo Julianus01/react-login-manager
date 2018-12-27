@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, Row, Icon, Menu, Dropdown } from 'antd'
+import { Card, Row, Icon, Menu, Dropdown, Avatar } from 'antd'
 import { withAuthContainer } from '../hoc/unstated'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
@@ -14,7 +14,7 @@ const menu = logout => (
       </a>
     </Menu.Item>
     <Menu.Item key='1'>
-      <a onClick={logout}>
+      <a role='button' onClick={logout}>
         <MenuIcon type='logout' />
         Logout
       </a>
@@ -39,14 +39,13 @@ const Navbar = ({ authContainer, history }) => {
             overlay={menu(logout)}
             trigger={['click']}
           >
-            {authContainer.state.user.photoURL ? (
-              <ProfileImage
-                alt='test'
+            <div>
+              <Avatar
+                style={{ cursor: 'pointer' }}
+                icon='user'
                 src={authContainer.state.user.photoURL}
               />
-            ) : (
-              <NavIcon type='user' />
-            )}
+            </div>
           </Dropdown>
         </Right>
       </BoxedRow>
@@ -81,21 +80,8 @@ const Right = styled.div`
   float: right;
 `
 
-const NavIcon = styled(Icon)`
-  margin-left: 30px;
-  font-size: 24px;
-  cursor: pointer;
-`
-
 const MenuIcon = styled(Icon)`
   margin-right: 8px;
-`
-
-const ProfileImage = styled.img`
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  cursor: pointer;
 `
 
 export default compose(

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Row } from 'antd'
+import { Form, Icon, Input, Button, Row, Divider } from 'antd'
 import styled from 'styled-components'
 import { withAuthContainer } from '../hoc/unstated'
 import PropTypes from 'prop-types'
@@ -53,36 +53,29 @@ class LoginForm extends React.Component {
             )}
           </FormItem>
 
-          <FormItem>
             <LoginButton
-              size='large'
               type='primary'
               htmlType='submit'
               loading={this.state.emailLoading}
             >
               {!this.state.emailLoading && 'Login'}
             </LoginButton>
-          </FormItem>
         </Form>
 
-        <Row>
-          <ConnectButton
+        <Divider style={{ fontWeight: 300 }}>or</Divider>
+
+        <Row style={{ display: 'flex' }}>
+          <GmailButton
             icon='google'
-            size='large'
-            type='primary'
             onClick={this.loginWithGoogle}
-            style={{ marginBottom: 24 }}
           >
-            gmail
-          </ConnectButton>
-          <ConnectButton
+          </GmailButton>
+
+          <FacebookButton
             icon='facebook'
-            size='large'
-            type='primary'
             onClick={this.loginWithFacebook}
           >
-            facebook
-          </ConnectButton>
+          </FacebookButton>
         </Row>
       </React.Fragment>
     )
@@ -129,8 +122,14 @@ const LoginButton = styled(Button)`
   width: 100%;
 `
 
-const ConnectButton = styled(Button)`
+const GmailButton = styled(Button)`
   width: 100%;
+  margin-right: 8px;
+`
+
+const FacebookButton = styled(Button)`
+  width: 100%;
+  margin-left: 8px;
 `
 
 LoginForm.propTypes = {
