@@ -3,12 +3,9 @@ import { withAuthContainer, withPostContainer } from '../../hoc/unstated'
 import { compose } from 'recompose'
 import PostsList from './PostsList'
 import styled from 'styled-components'
+import { Card } from 'antd'
 
 class PostsPage extends React.Component {
-  state = {
-    isFetching: true,
-  }
-
   async componentDidMount() {
     const { postContainer } = this.props
     const { uid } = this.props.authContainer.state.user
@@ -21,7 +18,15 @@ class PostsPage extends React.Component {
     const { postContainer } = this.props
     const { user } = this.props.authContainer.state
 
-    if (this.state.isFetching) return <div>Loading...</div>
+    // if (postContainer.state.isFetching) return <SContainer>Loading...</SContainer>
+    // if (postContainer.state.isFetching)
+    //   return (
+    //     <React.Fragment>
+    //       {Array.from({ length: 5 }, (item, index) => (
+    //         <Card loading={true} key={index} />
+    //       ))}
+    //     </React.Fragment>
+    //   )
 
     // console.log('PAGE render')
     return (
@@ -42,7 +47,7 @@ class PostsPage extends React.Component {
     // await postContainer.addPost(uid)
   }
 
-  refresh = uid => async () =>  {
+  refresh = uid => async () => {
     const { postContainer } = this.props
     await postContainer.getPosts(uid)
   }

@@ -11,6 +11,7 @@ export default class PostContainer extends Container {
 
   state = {
     posts: [],
+    isFetching: true,
   }
 
   // FB
@@ -29,10 +30,11 @@ export default class PostContainer extends Container {
   // }
 
   getPosts = async uid => {
+    this.setState({ isFetching: true })
     const response = await axios.get(`http://localhost:8000/posts/${uid}`)
     const posts = response.data
     console.log('POSTS: ', posts)
-    await this.setState({ posts })
+    await this.setState({ posts, isFetching: false })
   }
 
   addPost = async (uid, payload) => {

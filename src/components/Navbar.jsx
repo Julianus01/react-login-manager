@@ -57,6 +57,8 @@ const Wrapper = styled(Card)`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
+  border-top: 0;
 
   .ant-card-body {
     padding: 0;
