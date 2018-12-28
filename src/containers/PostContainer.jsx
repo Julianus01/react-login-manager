@@ -13,6 +13,7 @@ export default class PostContainer extends Container {
     posts: [],
   }
 
+  // FB
   // getPosts = async uid => {
   //   const querySnapshot = await this.db
   //     .collection('users')
@@ -49,6 +50,7 @@ export default class PostContainer extends Container {
     }))
   }
 
+  // FB
   // deletePost = async (uid, postId) => {
   //   try {
   //     await this.db

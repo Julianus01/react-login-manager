@@ -1,9 +1,11 @@
 import React from 'react'
 import { withPostContainer, withAuthContainer } from '../../hoc/unstated'
 import { compose, mapProps } from 'recompose'
+import { Card, Icon } from 'antd'
+import styled from 'styled-components'
 
 const Post = React.memo(({ post, user, deletePost }) => {
-  console.log('POST render')
+  // console.log('POST render')
 
   const handleDeletePost = async () => {
     await deletePost(user.uid, post._id)
@@ -11,12 +13,23 @@ const Post = React.memo(({ post, user, deletePost }) => {
   }
 
   return (
-    <div style={{ display: 'flex' }}>
-      <p>Post title: {post.title}</p>
-      <button onClick={handleDeletePost}>Delete</button>
-    </div>
+    <SCard
+      actions={[
+        <Icon type='delete' />,
+      ]}
+    >
+      <Card.Meta
+        title='Card title'
+        description='This is the description'
+      />
+    </SCard>
   )
 })
+
+const SCard = styled(Card)`
+  margin: 16px 0;
+  width: 100%;
+`
 
 export default compose(
   withPostContainer,
@@ -27,3 +40,5 @@ export default compose(
     deletePost: postContainer.deletePost,
   }))
 )(Post)
+
+

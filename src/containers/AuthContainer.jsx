@@ -1,5 +1,6 @@
 import { Container } from 'unstated'
 import firebase from 'firebase'
+import axios from 'axios'
 
 export default class AuthContainer extends Container {
   constructor() {
@@ -22,9 +23,11 @@ export default class AuthContainer extends Container {
 
   loginWithEmailAndPassword = async credentials => {
     try {
-      await firebase
+      const response = await firebase
         .auth()
         .signInWithEmailAndPassword(credentials.email, credentials.password)
+
+      await this.updateUserData(response.user)
     } catch (error) {
       console.log(error)
     }
@@ -46,6 +49,10 @@ export default class AuthContainer extends Container {
     } catch (error) {
       console.log(error)
     }
+  }
+
+  updateUserData = async user => {
+    await axios.patch('http://localhost:8000/user', { user })
   }
 
   logout = async () => {
