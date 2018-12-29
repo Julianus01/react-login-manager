@@ -27,7 +27,7 @@ const PostsList = React.memo(({ posts }) => {
 
 const ListContainer = styled.div`
   width: 100%;
-  margin: 0 -16px;
+  margin: -16px 0;
   display: flex;
   flex-direction: column;
   align-items: center;

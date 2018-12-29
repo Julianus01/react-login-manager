@@ -37,19 +37,22 @@ export default class PostContainer extends Container {
     await this.setState({ posts, isFetching: false })
   }
 
-  addPost = async (uid, payload) => {
-    const ref = this.db
-      .collection('users')
-      .doc(uid)
-      .collection('posts')
-      .doc()
+  createPost = async (uid, payload) => {
+    console.log('CREATED !!!')
+    console.log(uid)
+    console.log(payload)
+    // const ref = this.db
+    //   .collection('users')
+    //   .doc(uid)
+    //   .collection('posts')
+    //   .doc()
 
-    const newPost = { title: payload.title, id: ref.id }
-    await ref.set(newPost)
+    // const newPost = { title: payload.title, id: ref.id }
+    // await ref.set(newPost)
 
-    await this.setState(prevState => ({
-      posts: [newPost, ...prevState.posts],
-    }))
+    // await this.setState(prevState => ({
+    //   posts: [newPost, ...prevState.posts],
+    // }))
   }
 
   // FB

@@ -36,7 +36,7 @@ class LoginForm extends React.Component {
 
     return (
       <React.Fragment>
-        <Form onSubmit={this.validateForm}>
+        <Form onSubmit={this.validateFormAndLogin}>
           <FormItem>
             {getFieldDecorator('email', emailRules)(
               <Input placeholder='Email' prefix={<InputIcon type='mail' />} />
@@ -81,7 +81,7 @@ class LoginForm extends React.Component {
     )
   }
 
-  validateForm = event => {
+  validateFormAndLogin = event => {
     event.preventDefault()
     this.props.form.validateFields((err, formData) => {
       if (!err) {
