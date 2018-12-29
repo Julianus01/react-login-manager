@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # files
-/src/fb_config
+/src/fb_config.js
