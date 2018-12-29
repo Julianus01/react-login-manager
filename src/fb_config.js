@@ -1,5 +1,6 @@
 import firebase from 'firebase'
 
+// Initialize
 const config = firebase.initializeApp({
   apiKey: "AIzaSyDplqj8VQUzwUFKw-66nEUtnXIFMxCEkq0",
   authDomain: "react-login-manager.firebaseapp.com",
