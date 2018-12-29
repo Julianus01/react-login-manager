@@ -1,7 +1,7 @@
 import React from 'react'
 import { Subscribe } from 'unstated'
-import AuthContainer from '../../containers/AuthContainer'
-import PostContainer from '../../containers/PostContainer'
+import AuthContainer from '../containers/AuthContainer'
+import PostContainer from '../containers/PostContainer'
 
 export const withAuthContainer = Component => props => (
   <Subscribe to={[AuthContainer]}>

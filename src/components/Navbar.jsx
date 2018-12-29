@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Card, Row, Icon, Menu, Dropdown, Avatar } from 'antd'
-import { withAuthContainer } from '../hoc/unstated'
+import { withAuthContainer } from '../unstated/hoc'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'
 

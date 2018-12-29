@@ -1,5 +1,5 @@
 import React from 'react'
-import { withPostContainer, withAuthContainer } from '../../hoc/unstated'
+import { withPostContainer, withAuthContainer } from '../../unstated/hoc'
 import { compose, mapProps } from 'recompose'
 import { Card, Icon, Modal } from 'antd'
 import styled from 'styled-components'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { withAuthContainer } from '../hoc/unstated'
+import { withAuthContainer } from '../unstated/hoc'
 import { Redirect } from 'react-router-dom'
 import NoNavRoute from './NoNavRoute'
 

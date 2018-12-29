@@ -1,7 +1,7 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Row, Divider } from 'antd'
 import styled from 'styled-components'
-import { withAuthContainer } from '../hoc/unstated'
+import { withAuthContainer } from '../../unstated/hoc'
 import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { compose } from 'recompose'

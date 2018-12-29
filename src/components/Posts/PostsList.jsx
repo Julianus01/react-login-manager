@@ -1,5 +1,5 @@
 import React from 'react'
-import { withAuthContainer } from '../../hoc/unstated'
+import { withAuthContainer } from '../../unstated/hoc'
 import Post from './Post'
 import styled from 'styled-components'
 import { Card } from 'antd'

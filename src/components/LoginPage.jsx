@@ -1,7 +1,7 @@
 import React from 'react'
 import { Row, Card } from 'antd'
 import styled from 'styled-components'
-import LoginForm from './LoginForm'
+import LoginForm from './Login/LoginForm'
 
 const LoginPage = () => (
   <Wrapper type='flex' justify='center'>

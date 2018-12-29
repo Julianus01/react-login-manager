@@ -1,9 +1,8 @@
 import React from 'react'
-import { withAuthContainer, withPostContainer } from '../../hoc/unstated'
+import { withAuthContainer, withPostContainer } from '../unstated/hoc'
 import { compose } from 'recompose'
-import PostsList from './PostsList'
+import PostsList from './Posts/PostsList'
 import styled from 'styled-components'
-import { Card } from 'antd'
 
 class PostsPage extends React.Component {
   async componentDidMount() {

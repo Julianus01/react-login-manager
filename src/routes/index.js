@@ -2,7 +2,7 @@
 import React from 'react'
 import LandingPage from '../components/LandingPage'
 import LoginPage from '../components/LoginPage'
-import PostsPage from '../components/Posts'
+import PostsPage from '../components/PostsPage'
 
 // Custom routes
 import AuthRoute from './AuthRoute'

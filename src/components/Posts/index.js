@@ -1,3 +1,2 @@
-import PostsPage from './PostsPage'
-
-export default PostsPage
+export { default as Post } from './Post'
+export { default as PostsList } from './PostsList'
